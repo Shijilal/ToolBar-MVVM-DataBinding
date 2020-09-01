@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        setSupportActionBar(dataBinding.toolbar)
-        dataBinding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
+        //setSupportActionBar(dataBinding.toolbar)
+        //dataBinding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back)
         viewModel.navClicked.observe(this, navClickObserver)
         viewModel.toolbarTitle.observe(this,toolbarTitleObserver)
         dataBinding.viewModel=viewModel
@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
     private val navClickObserver = Observer<Boolean> {
         supportFragmentManager.popBackStack()
         Log.e(TAG,"Nav Back clicked")
-        dataBinding.viewModel=viewModel
     }
 
     private val toolbarTitleObserver = Observer<String> {
