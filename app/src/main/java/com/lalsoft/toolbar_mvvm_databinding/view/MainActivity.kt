@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
     private val navClickObserver = Observer<Boolean> {
         supportFragmentManager.popBackStack()
         Log.e(TAG,"Nav Back clicked")
+        dataBinding.viewModel=viewModel
     }
 
     private val toolbarTitleObserver = Observer<String> {
