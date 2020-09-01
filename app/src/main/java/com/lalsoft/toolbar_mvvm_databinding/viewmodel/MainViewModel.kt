@@ -1,18 +1,23 @@
 package com.lalsoft.toolbar_mvvm_databinding.viewmodel
 
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-open class MainViewModel:ViewModel() {
-    val toolbarTitle:MutableLiveData<String> = MutableLiveData()
-    val navClicked:MutableLiveData<Boolean> = MutableLiveData()
+private const val TAG = "MainViewModel"
 
+open class MainViewModel : ViewModel() {
+    val toolbarTitle: MutableLiveData<String> = MutableLiveData()
+    private val _navClicked: MutableLiveData<Boolean> = MutableLiveData()
+    val navClicked: LiveData<Boolean> = _navClicked
     init {
-        toolbarTitle.value="Main Activity"
+        Log.e(TAG, "Inside Init")
+        //toolbarTitle.value ="Main Activity"
     }
 
-    fun navBackClicked(){
-        navClicked.value=true
+    fun navBackClicked() {
+        _navClicked.value = true
     }
 
 }

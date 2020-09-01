@@ -13,6 +13,8 @@ import com.lalsoft.toolbar_mvvm_databinding.R
 import com.lalsoft.toolbar_mvvm_databinding.databinding.FirstFragmentBinding
 import com.lalsoft.toolbar_mvvm_databinding.view.common.Event
 import com.lalsoft.toolbar_mvvm_databinding.viewmodel.FirstViewModel
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 private const val TAG = "FirstFragment"
 
@@ -34,12 +36,17 @@ class FirstFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(FirstViewModel::class.java)
         viewModel.toolbarTitle.observe(viewLifecycleOwner, toolbarTitleObserver)
         viewModel.navigateToFragment.observe(viewLifecycleOwner, navigateToFragmentObserver)
+        //(activity as MainActivity?)!!.toolbar.title = "Check"
         dataBinding.viewModel = viewModel
 
     }
 
+
+
     private val toolbarTitleObserver = Observer<String> {
         Log.e(TAG, "Title set : $it")
+        //(activity as MainActivity?)!!.toolbar.title = "Check"
+        //Log.e(TAG, "Title set : Check")
     }
 
     private val navigateToFragmentObserver = Observer<Event<String>> { it ->
@@ -49,7 +56,6 @@ class FirstFragment : Fragment() {
                 R.id.fragment_container,
                 SecondFragment()
             ).addToBackStack(null).commit()
-
 
         }
     }
